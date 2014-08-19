@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JS Frameworks</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="DF">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+<section data-markdown>
+<script type="text/template">
+# Javascript Frameworks
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# frame · work
+/ˈfrāmˌwərk/
+
+*noun*
+
+* an essential supporting structure of a building, vehicle, or object.
+* basic structure underlying a system, concept, or text.
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# li·brar·y
+/ˈlīˌbrerē,-brərē/
+
+*noun*
+
+* a collection of programs and software packages made generally available, often [...] for immediate use.
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Backbone
+### Knockout
+### Angular
+### Ember
+### Vue
+### React
+### Polymer
+</script>
+</section>
+
+<section>
+<section data-markdown><script type="text/template">
+# Backbone
+*The grandmother of JS MVC*
+
+[http://backbonejs.org/](website)
+
+Sep 26, 2010
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Library? Framework? Does it matter?
+* Model, View, Collection, Router
+* Hard deps on _, $
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+var MyView = Backbone.View.extend({
+  template: _.template('<button>Click Me</button>'),
+  render: function() { ... },
+  events: {
+    'click': 'doButtonClick'
+  },
+  doButtonClick: function(e) { ... }
+});
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Most 'mature' framwebrary
+* Giant Community
+* Tiny (~1700 LOC, including comments)
+<br/><br/>
+
+### Cons
+* Doesn't give a lot for free
+* No opinions on data or structure
+* Every BB app looks *very* different
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Additional Info
+* [Marionette](http://marionettejs.com/)
+* [Boilerplate](http://backboneboilerplate.com/)
+* [Layout Manager](https://github.com/tbranyen/backbone.layoutmanager)
+</script></section>
+</section>
+
+
+<section>
+<section data-markdown><script type="text/template">
+# Knockout
+
+*Simplify dynamic JavaScript UIs with the MVVM pattern*
+
+[http://knockoutjs.com/](website)
+
+Jul 4, 2010
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Two-way data binding
+* Embed login in HTML
+* Inline event handling
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+<button data-bind="click: doButtonClick">Click Me</button>
+```
+
+```
+function MyViewModel() {
+  this.doButtonClick = function() { ... };
+}
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Easy to get started
+* No opinions about the structure of your data.
+<br/><br/>
+
+### Cons
+* No opinions about the structure of your data.
+* Although nested view-models are allowed, most knockout apps use a monolithic view-model singleton.
+* No url manipulation / routing.
+* Order of bound attributes matters.
+* Performance
+</script></section>
+</section>
+
+
+
+<section>
+<section data-markdown><script type="text/template">
+# Angular
+
+*HTML enhanced for web apps!*
+
+[https://angularjs.org/](website)
+
+Jan 3, 2010
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Two-way data binding
+* Directives (custom components)
+* Views, Controllers, MV{C,VM}?
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+<button ng-click="doButtonClick()">Click Me</button>
+```
+
+```
+angular.module('myApp', [])
+  .controller('AppController', ['$scope', function($scope) {
+    $scope.doButtonClick = function() { ... }
+  }]);
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Huge community (made by and used at Google)
+* Powerful
+<br/><br/>
+
+### Cons
+* Performance (dirty-checking)
+* Odd Syntax / Micro-Syntax
+</script></section>
+</section>
+
+
+
+
+<section>
+<section data-markdown><script type="text/template">
+# Ember
+
+*A Framework for creating __ambitious__ web applications*
+
+[http://emberjs.com/](website)
+
+Apr 24, 2011
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Two-way data binding
+* Powerful Routing
+* Components
+* Model, View, Controller, Router
+* The Rails of Client-Side JS Frameworks
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+<!-- templates/components/my-button.hbs -->
+<button>{{title}}</button>
+```
+
+```
+// components/my-button.js
+App.MyButtonComponent = Ember.Component.extend({
+  title: 'Click Me',
+  actions: {
+    click: function() { ... }
+  }
+});
+```
+
+```
+// usage
+{{my-button-component}}
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Huge Community
+* Convention over Configuration (there's a *right* way to do things)
+* Powerful
+<br/><br/>
+
+### Cons
+* Convention over Configuration (it's &#$% opinionated)
+* Performance overhead (Ember.Object)
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Additional Info
+* [Ember CLI](http://www.ember-cli.com/)
+* [Broccoli](https://github.com/broccolijs/broccoli)
+</script></section>
+</section>
+
+
+<section>
+<section data-markdown><script type="text/template">
+# Vue
+
+*MVVM Made Simple*
+
+[http://vuejs.org/](website)
+
+Jul 21, 2013
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Two-way binding through Object.observe()
+* Modularized/Composable MVVM
+* Components (as directives, like Angular)
+* Plain JS object models
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+<div id="app">
+  <button v-on="doClick">{{title}}</button>
+</div>
+```
+```
+var app = new View({
+  el: '#app',
+  data: {
+    title: 'Click Me'
+  },
+  methods: {
+    doClick: function() { ... }
+  }
+});
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Performance
+* Small / Lightweight
+* Used at Google Creative Lab
+<br/><br/>
+
+### Cons
+* Small Community (made by one dude)
+* Lots of micro syntax
+</script></section>
+</section>
+
+
+
+<section>
+<section data-markdown><script type="text/template">
+# React
+
+*A Javascript Library for Building User Interfaces*
+
+[http://facebook.github.io/react/](website)
+
+May 26, 2013
+</script></section>
+
+<section data-markdown><script type="text/template">
+* Just the View Layer
+* Write HTML in your JS
+* Fully Stateful
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+var MyButton = React.createClass({
+  doClick: function(e) { ... },
+  render: function() {
+    return (
+      <button onClick={this.doClick}>
+        {this.props.title}
+      </button>
+    );
+  }
+});
+```
+```
+var App = React.createClass({
+  render: function() {
+    return <MyButton title="Click Me"/>;
+  }
+});
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Performance
+* Composability
+* State
+* JSX
+<br/><br/>
+
+### Cons
+* JSX
+* Completely different than anything else
+* Just the View Layer
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Additional Info
+* [Flux](http://facebook.github.io/react/docs/flux-overview.html)
+* [Jest](http://facebook.github.io/jest/)
+* [Om](https://github.com/OmJS/OmJS)
+</script></section>
+</section>
+
+
+<section>
+<section data-markdown><script type="text/template">
+# Polymer
+
+*Welcome to the future*
+
+[http://www.polymer-project.org/](website)
+
+Oct 7, 2012
+</script></section>
+<section data-markdown><script type="text/template">
+* True Web Components
+* Shadow DOM
+</script></section>
+
+<section data-markdown><script type="text/template">
+```
+<link rel="import" href="my-button.html" />
+
+<my-button></my-button>
+
+<polymer-element name="my-button" attributes="title">
+  <template>
+    <style>/* ... */</style>
+    <button on-click="{{doClick}}">{{title}}</button>
+  </template>
+  <s c r i p t>
+  Polymer({
+    title: 'Click Me',
+    doClick: function() { ... }
+  });
+  </s c r i p t>
+</polymer-element>
+```
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pros
+* Use tomorrow's html/js today
+* Polyfills for everything
+<br/><br/>
+
+### Cons
+* Even Google says "not production ready"
+* Spec *will* change a lot
+</script></section>
+</section>
+
+
+<section>
+<h1>THE END</h1>
+</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
